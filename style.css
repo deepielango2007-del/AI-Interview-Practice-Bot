@@ -1,0 +1,255 @@
+body {
+    font-family: Arial, sans-serif;
+    display: block;
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+    background: #f2f2f2;
+}.container{background:#fff;padding:20px;border-radius:10px;text-align:center}button,input,select{padding:10px;margin:5px}
+.progress-container {
+    width: 100%;
+    height: 12px;
+    background: #ddd;
+    border-radius: 10px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 100%;
+    background: #4caf50;
+    border-radius: 10px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+/* Interview History Cards */
+.history-card {
+    background: white;
+    color: #333;
+    padding: 15px;
+    margin: 15px auto;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+}
+
+.history-card h3 {
+    color: #d63384;
+    margin-bottom: 10px;
+}
+
+.history-card p {
+    margin: 8px 0;
+    line-height: 1.5;
+}
+/* Mobile-friendly Interview History */
+#historyList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.history-card {
+    width: 100%;
+    max-width: 420px;
+    box-sizing: border-box;
+    margin: 15px auto;
+    overflow-wrap: anywhere;
+}
+
+.history-card h3 {
+    font-size: 22px;
+}
+
+.history-card p {
+    font-size: 16px;
+}
+/* History Page Layout */
+.history-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.history-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.history-container button {
+    margin: 20px auto;
+    padding: 12px 24px;
+    width: auto;
+    max-width: 200px;
+    white-space: normal;
+}
+/* Performance Dashboard */
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.dashboard-card {
+    background: linear-gradient(135deg, #e8f5e9, #e3f2fd);
+    padding: 20px 10px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card h3 {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.dashboard-card p {
+    font-size: 26px;
+    font-weight: bold;
+    color: #2e7d32;
+    margin: 0;
+}
+/* ===============================
+   MODERN PROFESSIONAL UI
+================================ */
+
+body {
+    background: linear-gradient(135deg, #f5f0ff, #eef5ff);
+    color: #302b45;
+    line-height: 1.6;
+}
+
+/* Main container */
+.container {
+    width: 90%;
+    max-width: 650px;
+    margin: 35px auto;
+    padding: 25px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(90, 70, 140, 0.12);
+}
+
+/* Headings */
+h1 {
+    color: #7048a8;
+    font-size: 28px;
+    line-height: 1.3;
+}
+
+h2 {
+    color: #5b4590;
+}
+
+/* Buttons */
+button {
+    background: linear-gradient(135deg, #8b5cf6, #6d5bd0);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    margin: 8px 5px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 10px rgba(109, 91, 208, 0.2);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* Input fields and dropdowns */
+input,
+select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 13px;
+    margin: 10px 0;
+    border: 1px solid #d9cdef;
+    border-radius: 12px;
+    background: #fcfaff;
+    color: #302b45;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
+}
+
+/* Progress bar */
+.progress-container {
+    background: #e8def8;
+}
+
+#progress-bar {
+    background: linear-gradient(90deg, #a78bfa, #6d5bd0);
+}
+
+/* Interview history cards */
+.history-card {
+    background: linear-gradient(145deg, #ffffff, #faf7ff);
+    border: 1px solid #e7def5;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(90, 70, 140, 0.09);
+}
+
+/* Dashboard cards */
+.dashboard-card {
+    background: linear-gradient(135deg, #f0eaff, #eaf4ff);
+    border: 1px solid #e5dcf7;
+    border-radius: 18px;
+}
+
+.dashboard-card h3 {
+    color: #5b4590;
+}
+
+.dashboard-card p {
+    color: #7048a8;
+}
+
+/* Mobile responsive design */
+@media (max-width: 480px) {
+
+    .container {
+        width: 92%;
+        margin: 20px auto;
+        padding: 18px;
+        border-radius: 18px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    button {
+        max-width: 100%;
+    }
+}

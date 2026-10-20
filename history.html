@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview History</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="history-container">
+
+    <h1>📋 Interview History</h1>
+    <div class="dashboard">
+    <div class="dashboard-card">
+        <h3>Total Interviews</h3>
+        <p id="totalInterviews">0</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Average Score</h3>
+        <p id="averageScore">0%</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Highest Score</h3>
+        <p id="highestScore">0%</p>
+    </div>
+</div>
+<h2>📚 Subject-wise Performance</h2>
+<div id="subjectPerformance"></div>
+
+<h2>📈 Overall Performance</h2>
+<div id="performanceStatus"></div>
+
+    <div id="historyList"></div>
+
+    <button onclick="goHome()">Back to Home</button>
+
+</div>
+
+    <script>
+        const historyList = document.getElementById("historyList");
+        const history = JSON.parse(
+            localStorage.getItem("interviewHistory") || "[]"
+        );
+        // Performance Dashboard
+document.getElementById("totalInterviews").textContent =
+    history.length;
+
+let percentages = history.map(item =>
+    Number(item.percentage) || 0
+);
+
+let average = history.length > 0
+    ? percentages.reduce((sum, score) => sum + score, 0) / history.length
+    : 0;
+
+let highest = history.length > 0
+    ? Math.max(...percentages)
+    : 0;
+
+document.getElementById("averageScore").textContent =
+    average.toFixed(1) + "%";
+
+document.getElementById("highestScore").textContent =
+    highest + "%";
+    // Subject-wise Performance
+const subjectPerformance = document.getElementById("subjectPerformance");
+const subjectScores = {};
+
+history.forEach(item => {
+    const subject = item.subject || "Other";
+
+    if (!subjectScores[subject]) {
+        subjectScores[subject] = [];
+    }
+
+    subjectScores[subject].push(Number(item.percentage) || 0);
+});
+
+subjectPerformance.innerHTML = Object.keys(subjectScores).length
+    ? Object.entries(subjectScores).map(([subject, scores]) => {
+        const averageScore =
+            scores.reduce((sum, score) => sum + score, 0) / scores.length;
+
+        return `
+            <div class="history-card">
+                <h3>${escapeHTML(subject)}</h3>
+                <p>Average Score: ${averageScore.toFixed(1)}%</p>
+                <p>Interviews: ${scores.length}</p>
+            </div>
+        `;
+    }).join("")
+    : "<p>Complete an interview to see subject performance.</p>";
+
+// Overall Performance Status
+const statusElement = document.getElementById("performanceStatus");
+
+let status = "No Data Yet";
+let message = "Complete your first interview to see your performance.";
+
+if (history.length > 0) {
+    if (average >= 80) {
+        status = "🌟 Excellent";
+        message = "Excellent work! Keep maintaining your performance.";
+    } else if (average >= 60) {
+        status = "👏 Good";
+        message = "Good progress! Keep practising to improve your score.";
+    } else {
+        status = "💪 Needs Improvement";
+        message = "Don't worry! Practice regularly and improve step by step.";
+    }
+}
+
+statusElement.innerHTML = `
+    <div class="dashboard-card">
+        <h3>${status}</h3>
+        <p>${message}</p>
+    </div>
+`;
+
+        if (history.length === 0) {
+            historyList.innerHTML =
+                "<p>No interview history yet. Complete an interview first!</p>";
+        } else {
+            historyList.innerHTML = history.slice().reverse().map(item => `
+                <div class="history-card">
+                    <h3>${escapeHTML(item.name || "Student")}</h3>
+                    <p><b>Subject:</b> ${escapeHTML(item.subject || "N/A")}</p>
+                    <p><b>Difficulty:</b> ${escapeHTML(item.difficulty || "N/A")}</p>
+                    <p><b>Score:</b> ${escapeHTML(item.score || "0/0")}</p>
+                    <p><b>Percentage:</b> ${Number(item.percentage) || 0}%</p>
+                    <p><b>Date:</b> ${escapeHTML(item.date || "N/A")}</p>
+                </div>
+            `).join("");
+        }
+
+        function escapeHTML(value) {
+            return String(value).replace(/[&<>"']/g, char => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            })[char]);
+        }
+
+        function goHome() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Review Answers</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #222;
+        }
+
+        .review-card {
+            background: white;
+            padding: 20px;
+            margin: 15px auto;
+            max-width: 600px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px #cccccc;
+        }
+
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+
+        .wrong {
+            color: red;
+            font-weight: bold;
+        }
+
+        button {
+            display: block;
+            margin: 25px auto;
+            padding: 12px 22px;
+            background: #1683e8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>📝 Review Your Answers</h1>
+
+    <div id="reviewContainer"></div>
+
+    <button onclick="goToResult()">
+        Back to Result
+    </button>
+
+    <script>
+        let savedAnswers =
+            JSON.parse(
+                localStorage.getItem("reviewAnswers") || "[]"
+            );
+
+        let container =
+            document.getElementById("reviewContainer");
+
+        if (savedAnswers.length === 0) {
+
+            container.innerHTML =
+                "<p>No answers available. Please complete an interview first.</p>";
+
+        } else {
+
+            savedAnswers.forEach(function(item, index) {
+
+                let card = document.createElement("div");
+                card.className = "review-card";
+
+                let status = item.isCorrect
+                    ? "✅ Correct"
+                    : "❌ Wrong";
+
+                let statusClass = item.isCorrect
+                    ? "correct"
+                    : "wrong";
+
+                let question = document.createElement("h3");
+                question.textContent =
+                    "Question " + (index + 1) + ": " + item.question;
+
+                let yourAnswer = document.createElement("p");
+                yourAnswer.textContent =
+                    "Your Answer: " + (item.yourAnswer || "No answer");
+
+                let correctAnswer = document.createElement("p");
+                correctAnswer.textContent =
+                    "Correct Answer: " + item.correctAnswer;
+
+                let result = document.createElement("p");
+                result.textContent = status;
+                result.className = statusClass;
+
+                card.appendChild(question);
+                card.appendChild(yourAnswer);
+                card.appendChild(correctAnswer);
+                card.appendChild(result);
+
+                container.appendChild(card);
+            });
+        }
+
+        function goToResult() {
+            window.location.href = "result.html";
+        }
+    </script>
+
+</body>
+</html>

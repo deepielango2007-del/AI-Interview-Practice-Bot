@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Interview</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="showQuestion()">
+
+<div class="container">
+  
+    <p id="questionNumber"></p>
+    <p id="timer"></p>
+    <h2 id="question"></h2>
+    <div class="progress-container">
+    <div id="progress-bar"></div>
+</div>
+
+
+    <p id="explanation"></p>
+
+    <input
+        type="text"
+        id="answer"
+        placeholder="Type your answer">
+
+    <br><br>
+
+    <button type="button" onclick="checkAnswer()">
+        Submit
+    </button>
+
+    <button type="button" onclick="nextQuestion()">
+        Next
+    </button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

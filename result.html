@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Interview Result</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .result-box {
+            background: white;
+            width: 80%;
+            max-width: 500px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #222;
+        }
+
+        p {
+            font-size: 20px;
+        }
+
+
+.score-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.score-card {
+    margin: 0;
+    padding: 20px 10px;
+    background: #f8fbff;
+    border: 1px solid #dbeafe;
+    border-radius: 14px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.score-card span {
+    display: block;
+    margin-top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+}
+
+.score {
+    color: #16a34a;
+}
+
+.percentage {
+    color: #1683e8;
+}
+
+@media (max-width: 400px) {
+    .result-box {
+        width: 90%;
+        padding: 20px 12px;
+        box-sizing: border-box;
+    }
+
+    .score-cards {
+        gap: 10px;
+    }
+
+    .score-card {
+        padding: 15px 5px;
+    }
+
+    .score-card span {
+        font-size: 24px;
+    }
+}
+
+
+        #performance {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        #status {
+            font-size: 26px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        button {
+            background: #1683e8;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+
+
+    
+.progress-track {
+    width: 100%;
+    height: 14px;
+    background: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 12px 0 25px;
+}
+
+#score-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #16a34a;
+    border-radius: 20px;
+    transition: width 0.6s ease;
+}
+/* Certificate Design */
+
+.certificate {
+    display: none;
+    background: #fffdf5;
+    border: 8px double #9b7bca;
+    border-radius: 15px;
+    padding: 25px 15px;
+    margin: 25px auto;
+    max-width: 650px;
+    box-sizing: border-box;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+}
+
+.certificate h1 {
+    color: #7048a8;
+    font-size: 28px;
+}
+
+.certificate h2 {
+    color: #9b7bca;
+}
+
+.certificate p {
+    font-size: 16px;
+    overflow-wrap: anywhere;
+}
+
+.certificate-name {
+    color: #7048a8;
+    font-size: 26px !important;
+    font-weight: bold;
+    border-bottom: 2px solid #d6c4ef;
+    padding-bottom: 10px;
+}
+
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .result-box {
+        display: none;
+    }
+
+    .certificate {
+        display: block !important;
+        box-shadow: none;
+        margin: 0;
+    }
+
+    .certificate button {
+        display: none;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="result-box">
+
+        <h1>
+            🎉 Interview Completed
+        </h1>
+
+        <p>
+            Name :
+            <span id="userName"></span>
+        </p>
+
+        <p>
+            Subject :
+            <span id="subject"></span>
+        </p>
+        <p>
+    Difficulty :
+    <span id="difficulty"></span>
+</p>
+
+<div class="score-cards">
+
+    <p class="score-card score">
+        Your Score
+        <span id="score"></span>
+    </p>
+
+    <p class="score-card percentage">
+        Percentage
+        <span id="percentage"></span>
+    </p>
+
+</div>
+
+<p><b>Performance Progress</b></p>
+
+<div class="progress-track">
+    <div id="score-progress-fill"></div>
+</div>
+
+
+
+        <p id="performance"></p>
+
+        <p id="status"></p>
+
+        <button onclick="restartInterview()">
+            Restart Interview
+        </button>
+        <br><br>
+
+<button onclick="reviewInterview()">
+    📝 Review Answers
+</button>
+<br><br>
+
+<button onclick="showCertificate()">
+    🎓 Get Certificate
+</button>
+
+    </div>
+    <div class="certificate" id="certificate">
+
+    <h2>🏆 CERTIFICATE OF ACHIEVEMENT</h2>
+
+    <h1>AI Interview Practice Bot</h1>
+
+    <p>This certificate is presented to</p>
+
+    <p class="certificate-name" id="certName"></p>
+
+    <p>for completing an interview practice session.</p>
+
+    <p><b>Subject:</b> <span id="certSubject"></span></p>
+
+    <p><b>Difficulty:</b> <span id="certDifficulty"></span></p>
+
+    <p><b>Score:</b> <span id="certScore"></span></p>
+
+    <p><b>Percentage:</b> <span id="certPercentage"></span></p>
+
+    <p><b>Date:</b> <span id="certDate"></span></p>
+
+    <p>Keep learning. Keep growing. Keep achieving! 🌟</p>
+<button onclick="printCertificate()">🖨️ Print Certificate</button>
+
+<button onclick="downloadCertificate()">
+    📥 Download Certificate
+</button>
+
+</div>
+
+
+    <script>
+
+        // Get saved data
+
+        let userName =
+            localStorage.getItem("userName");
+
+        let subject =
+            localStorage.getItem("subject");
+            let difficulty =
+    localStorage.getItem("difficulty");
+
+
+        let score =
+            localStorage.getItem("score");
+            
+
+        // Display name
+
+        document.getElementById("userName").innerHTML =
+            userName || "Not Available";
+
+
+        // Display subject
+
+        document.getElementById("subject").innerHTML =
+            subject || "Not Available";
+            document.getElementById("difficulty").innerHTML =
+    difficulty || "Not Available";
+
+
+        // Display score
+
+        document.getElementById("score").innerHTML =
+            score || "0/0";
+
+
+        // Calculate percentage
+
+        if (score) {
+
+            let scoreNumber =
+                parseInt(score.split("/")[0]);
+
+            let totalQuestions =
+                parseInt(score.split("/")[1]);
+
+
+            let percentage =
+                (scoreNumber / totalQuestions) * 100;
+
+
+            // Display percentage
+
+            document.getElementById("percentage").innerHTML =
+                percentage + "%";
+                document.getElementById("score-progress-fill").style.width =
+    percentage + "%";
+
+
+            // Performance message
+
+            let performanceMessage = "";
+
+
+            if (scoreNumber === totalQuestions) {
+
+                performanceMessage =
+                    "🎉 Excellent! Outstanding performance!";
+
+            }
+
+            else if (scoreNumber >= 4) {
+
+                performanceMessage =
+                    "👏 Great Job! Keep it up!";
+
+            }
+
+            else if (scoreNumber === 3) {
+
+                performanceMessage =
+                    "👍 Good effort! Keep practicing!";
+
+            }
+
+            else {
+
+                performanceMessage =
+                    "💪 Don't give up! Practice more!";
+
+            }
+
+
+            document.getElementById("performance").innerHTML =
+                performanceMessage;
+
+
+            // PASS / FAIL
+
+            if (percentage >= 60) {
+
+                document.getElementById("status").innerHTML =
+                    "✅ PASS";
+
+                document.getElementById("status").style.color =
+                    "green";
+
+            }
+
+            else {
+
+                document.getElementById("status").innerHTML =
+                    "❌ KEEP PRACTICING";
+
+                document.getElementById("status").style.color =
+                    "red";
+
+            }
+
+        }
+// Save interview history
+let history =
+    JSON.parse(localStorage.getItem("interviewHistory") || "[]");
+
+let currentScore =
+    localStorage.getItem("score") || "0/0";
+
+let scoreParts = currentScore.split("/");
+
+let obtainedScore = parseInt(scoreParts[0]) || 0;
+let totalQuestions = parseInt(scoreParts[1]) || 0;
+
+let currentPercentage = totalQuestions > 0
+    ? Math.round((obtainedScore / totalQuestions) * 100)
+    : 0;
+
+let currentResult = {
+    name: localStorage.getItem("userName") || "Not Available",
+    subject: localStorage.getItem("subject") || "Not Available",
+    difficulty: localStorage.getItem("difficulty") || "Not Available",
+    score: currentScore,
+    percentage: currentPercentage,
+    date: new Date().toLocaleString()
+};
+
+if (localStorage.getItem("historySavedFor") !== currentScore + "|" + currentResult.subject + "|" + currentResult.difficulty) {
+    history.push(currentResult);
+    localStorage.setItem("interviewHistory", JSON.stringify(history));
+    localStorage.setItem("historySavedFor", currentScore + "|" + currentResult.subject + "|" + currentResult.difficulty);
+}
+function printCertificate() {
+    window.location.href = "javascript:window.print()";
+}
+function showCertificate() {
+
+    let scoreText = localStorage.getItem("score") || "0/0";
+    let parts = scoreText.split("/");
+
+    let obtained = parseInt(parts[0]) || 0;
+    let total = parseInt(parts[1]) || 0;
+
+    let percentage = total > 0
+        ? Math.round((obtained / total) * 100)
+        : 0;
+
+    document.getElementById("certName").textContent =
+        localStorage.getItem("userName") || "Learner";
+
+    document.getElementById("certSubject").textContent =
+        localStorage.getItem("subject") || "Not Available";
+
+    document.getElementById("certDifficulty").textContent =
+        localStorage.getItem("difficulty") || "Not Available";
+
+    document.getElementById("certScore").textContent =
+        scoreText;
+
+    document.getElementById("certPercentage").textContent =
+        percentage + "%";
+
+    document.getElementById("certDate").textContent =
+        new Date().toLocaleDateString();
+
+    document.getElementById("certificate").style.display = "block";
+
+    document.getElementById("certificate").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+function downloadCertificate() {
+
+    const certificate =
+        document.getElementById("certificate");
+
+    if (!certificate) {
+        alert("Certificate not found!");
+        return;
+    }
+
+    const oldDisplay = certificate.style.display;
+
+    certificate.style.display = "block";
+
+    window.print();
+
+    certificate.style.display = oldDisplay;
+}
+
+        // Restart Interview
+function reviewInterview() {
+    window.location.href = "review.html";
+}
+        function restartInterview() {
+
+    localStorage.removeItem("userName");
+    localStorage.removeItem("subject");
+    localStorage.removeItem("difficulty");
+    localStorage.removeItem("score");
+    localStorage.removeItem("questions");
+    localStorage.removeItem("reviewAnswers");
+
+    window.location.href = "index.html";
+
+}
+
+    </script>
+
+</body>
+
+</html>
